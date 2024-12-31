@@ -12,7 +12,9 @@ export default {
         // background: "var(--background)",
         // foreground: "var(--foreground)",
         darkgray: "#434343",
-        lightgray: "#E3E3E3"
+        lightgray: "#E3E3E3",
+        midgray: "#515151",
+        
       },
     },
   },
