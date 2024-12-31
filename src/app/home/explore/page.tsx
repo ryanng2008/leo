@@ -2,14 +2,14 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { useState } from 'react';
-import clsx from 'clsx'
+// import clsx from 'clsx'
 
 export default function Page() {
-    const Tag = ({ text }: { text: string }) => {
-        return (
-            <div className='py-1 px-4 rounded-full text-xs bg-darkgray text-white'>{text}</div>
-        )
-    }
+    // const Tag = ({ text }: { text: string }) => {
+    //     return (
+    //         <div className='py-1 px-4 rounded-full text-xs bg-darkgray text-white'>{text}</div>
+    //     )
+    // }
     const [showSearch, setShowSearch] = useState(false);
     return (
         <div className="my-12 flex flex-col mx-8">
@@ -68,26 +68,26 @@ export default function Page() {
     )
 }
 
-function ListingItem({ title, creator, location, rating, image='', tags}: { title: string, creator: string, location: string, rating: number | string, image: string, tags: string[] }) {
-    return (
-        <div className="bg-lightgray rounded-2xl drop-shadow-xl grid grid-cols-4 px-8 py-6">
-            <div className="col-span-3 flex flex-col gap-2">
-                <h1 className='font-semibold text-3xl'>{title}</h1>
-                <div className='DETAILS flex flex-row gap-4 text-sm mx-1'>
-                    <p>{creator}</p>
-                    <div className='h-[2px] w-[2px] rounded-full my-auto bg-darkgray' />
-                    <p>{location}</p>
-                    {false && rating}
-                </div>
-                <ul className='TAGS flex flex-wrap gap-2 my-1'>
-                    {tags.map((tag, i) => {
-                        return <li key={i} className='py-1 px-4 rounded-full text-xs bg-darkgray text-white'>{tag}</li>
-                    })}
-                </ul>
-            </div>
-            <div className='overflow-hidden rounded-lg'>
-                <Image src={image} height={144} width={144} alt="50 bomb" />
-            </div>
-        </div>
-    )
-}
+// function ListingItem({ title, creator, location, rating, image='', tags}: { title: string, creator: string, location: string, rating: number | string, image: string, tags: string[] }) {
+//     return (
+//         <div className="bg-lightgray rounded-2xl drop-shadow-xl grid grid-cols-4 px-8 py-6">
+//             <div className="col-span-3 flex flex-col gap-2">
+//                 <h1 className='font-semibold text-3xl'>{title}</h1>
+//                 <div className='DETAILS flex flex-row gap-4 text-sm mx-1'>
+//                     <p>{creator}</p>
+//                     <div className='h-[2px] w-[2px] rounded-full my-auto bg-darkgray' />
+//                     <p>{location}</p>
+//                     {false && rating}
+//                 </div>
+//                 <ul className='TAGS flex flex-wrap gap-2 my-1'>
+//                     {tags.map((tag, i) => {
+//                         return <li key={i} className='py-1 px-4 rounded-full text-xs bg-darkgray text-white'>{tag}</li>
+//                     })}
+//                 </ul>
+//             </div>
+//             <div className='overflow-hidden rounded-lg'>
+//                 <Image src={image} height={144} width={144} alt="50 bomb" />
+//             </div>
+//         </div>
+//     )
+// }

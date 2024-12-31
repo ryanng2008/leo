@@ -2,18 +2,18 @@
 
 import { CurrencyDollarIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Listing() {
-    const gallery = ['fgkhdfkgf', 'fgkhdfkgf', 'fgkhdfkgf', 'fgkhdfkgf']
-    const [galleryIndex, setGalleryIndex] = useState(0);
-    const currentImg = gallery[galleryIndex];
-    function handlePrev() {
-        setGalleryIndex(i => (i - 1) % gallery.length)
-    }
-    function handleNext() {
-        setGalleryIndex(i => (i - 1) % gallery.length)
-    }
+    // const gallery = ['fgkhdfkgf', 'fgkhdfkgf', 'fgkhdfkgf', 'fgkhdfkgf']
+    // const [galleryIndex, setGalleryIndex] = useState(0);
+    // const currentImg = gallery[galleryIndex];
+    // function handlePrev() {
+    //     setGalleryIndex(i => (i - 1) % gallery.length)
+    // }
+    // function handleNext() {
+    //     setGalleryIndex(i => (i - 1) % gallery.length)
+    // }
     return (
         <div className="my-16 grid grid-cols-2 gap-12">
             <div className="flex flex-col gap-6">
