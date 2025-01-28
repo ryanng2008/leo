@@ -1,19 +1,8 @@
-"use client"
-
 import { CurrencyDollarIcon, MapPinIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
-// import { useState } from "react";
 
-export default function Listing() {
-    // const gallery = ['fgkhdfkgf', 'fgkhdfkgf', 'fgkhdfkgf', 'fgkhdfkgf']
-    // const [galleryIndex, setGalleryIndex] = useState(0);
-    // const currentImg = gallery[galleryIndex];
-    // function handlePrev() {
-    //     setGalleryIndex(i => (i - 1) % gallery.length)
-    // }
-    // function handleNext() {
-    //     setGalleryIndex(i => (i - 1) % gallery.length)
-    // }
+
+// This will be ur skeleton
+export function Loading() {
     return (
         <div className="my-16 grid grid-cols-2 gap-12">
             <div className="flex flex-col gap-6">
@@ -46,29 +35,9 @@ export default function Listing() {
                 </div>
             </div>
             <div className="flex flex-col ">
-                <div className="min-h-[250px] mx-auto items-center flex flex-col gap-4">
-                    <Image height={250} width={250} alt="flynnn" src="/fifty.png"></Image>
-                    <div className="flex justify-center gap-4">
-                        <button>Prev</button>
-                        <button>Next</button>
-                    </div>
-                    Arinjoy u gotta help me w this one bro
-                </div>
+                
                 <div>Reviews gallery</div>
             </div>
         </div>
     )
 }
-
-// export default async function Listing({
-//     params,
-//   }: {
-//     params: Promise<{ listingId: string }>
-//   }) {
-//     const listingId = (await params).listingId;
-//     return (
-//         <div>
-//             {listingId}
-//         </div>
-//     )
-// }

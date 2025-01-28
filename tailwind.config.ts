@@ -14,7 +14,7 @@ export default {
         darkgray: "#434343",
         lightgray: "#E3E3E3",
         midgray: "#515151",
-        
+        danger: "#cc185c"
       },
     },
   },
