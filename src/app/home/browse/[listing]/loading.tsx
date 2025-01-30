@@ -2,16 +2,16 @@ import { CurrencyDollarIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
 
 // This will be ur skeleton
-export function Loading() {
+export default function Loading() {
     return (
         <div className="my-16 grid grid-cols-2 gap-12">
             <div className="flex flex-col gap-6">
                 <div className="space-y-2">
-                    <h1 className="font-bold text-4xl">Tennis for Beginners</h1>
-                    <p className="text-xl">Leonardo Martinello</p>
+                    <h1 className="font-bold text-4xl">Loading...</h1>
+                    <p className="text-xl">Loading...</p>
                 </div>
                 <div>
-                    <p className="text-sm">Cook cookies, not meth. DEA meanies catch bad guys. Gus Fring chicken man. Breaking Bad no good. Albuquerque hot place. Methylamine is a yucky chemical. RV is a car, not a house. Crystal pretty but bad. Money is for buying cookies, not breaking laws. Friends and family good, bad guys bad</p>
+                    <p className="text-sm">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <div className="space-y-4">
                     <h1 className="font-semibold text-2xl">Details</h1>

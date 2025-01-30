@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
-import { supabaseClient } from '@/app/lib/supabase/client'; 
+import { supabase } from '@/app/lib/supabase/clients/client'; 
 import { CredentialResponse } from './types/auth'; 
 
 export default function GoogleAuthInitializer() {
   useEffect(() => {
     window.handleSignInWithGoogle = async function (response: CredentialResponse): Promise<void> {
-      const { data, error } = await supabaseClient.auth.signInWithIdToken({
+      const { data, error } = await supabase.auth.signInWithIdToken({
         provider: 'google',
         token: response.credential,
       });

@@ -1,8 +1,7 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react';
-import { fetchUserInfo, handleSignOut } from '@/app/lib/supabase/user';
+import { fetchUserInfo, handleSignOut } from '@/app/lib/supabase/auth/user';
 import { User } from '@supabase/supabase-js';
-import { useRouter } from 'next/navigation';
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

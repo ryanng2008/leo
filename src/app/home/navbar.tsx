@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Script from 'next/script';
 import AccountMenu from "@/app/ui/accountMenu";
 // import { createClient } from '@/app/lib/supabase/server';
 

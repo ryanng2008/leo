@@ -1,6 +1,6 @@
-// "use client"
-import { listingItems } from '@/app/lib/placeholder-data';
+
 import ListingItem from '@/app/home/browse/listingItem';
+import { getListingsWithProvider } from '@/app/lib/supabase/get/listing';
 // import prisma from '@/app/lib/db';
 
 export default async function Page() {
@@ -9,18 +9,20 @@ export default async function Page() {
     //     // get provider name from provider id
     //     // render ListingItem
     // })
-    const dummyListings = listingItems.map((l) => {
+    const listings = await getListingsWithProvider();
+    const dummyListings = listings.map((l) => {
         return <ListingItem 
             key={l.id}
             id={l.id}
             title={l.title}
-            providerName={l.providerName}
-            tags={l.tags}
-            location={l.location}
+            providerName={l.profile.name || ''}
+            tags={l.tags || []}
+            location={l.details![0] || ''}
         />
     })
     
     return (
+        <div className='grow'>
         <div className="my-12 flex flex-col mx-8">
             <div className="ACTION BA.R mb-8">
                 <div className='flex justify-end mx-4 gap-4'>
@@ -36,6 +38,7 @@ export default async function Page() {
             <div className="grid grid-cols-2 gap-8">
                 {dummyListings}
             </div>
+        </div>
         </div>
     )
 }

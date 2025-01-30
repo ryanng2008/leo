@@ -1,8 +1,8 @@
-import { supabaseClient } from "@/app/lib/supabase/client";
+import { supabase } from "@/app/lib/supabase/clients/client";
 
 
 export async function fetchUserInfo() {
-    const { data: { user }, error } = await supabaseClient.auth.getUser();
+    const { data: { user }, error } = await supabase.auth.getUser();
   
     if (error) {
       // console.error('Error fetching user info:', error);
@@ -11,8 +11,18 @@ export async function fetchUserInfo() {
     return user;
 }
 
+export async function fetchUserId() {
+    const { data: { user }, error } = await supabase.auth.getUser();
+
+    if (error) {
+      // console.error('Error fetching user info:', error);
+      return null;
+    }
+    return user?.id;
+}
+
 export async function handleSignOut() {
-  const { error } = await supabaseClient.auth.signOut();
+  const { error } = await supabase.auth.signOut();
   return error;
 }
 
