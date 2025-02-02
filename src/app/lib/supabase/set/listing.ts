@@ -10,21 +10,22 @@ export async function createListing(listing: ListingInsertInput) {
     const userId = await fetchUserId();   
     if (!userId) {
         console.error('No authenticated user found.');
-        return false;
+        return { success: false, message: 'Sign in first!' };
     } 
-    const { error } = await supabase
+    const { data, error } = await supabase
         .from('listing')
         .insert([{
             ...listing,
             providerid: userId
         }])
+        .select('id');
         // .select();
     if(error) {
         console.error('Error creating listing: ', error)
-        return false;
+        return { success: false, message: 'An error occurred... please contact ryandoesnothing1@gmail.com about this' };
     } else {
         console.log('Hell Yeahhhhhhh')
-        return true;
+        return { success: true, id: data[0].id, message: 'Success!' };
     }
 }
 

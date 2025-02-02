@@ -28,14 +28,14 @@ export default async function Listing({
         <div className="my-16 grid grid-cols-2 gap-12">
             <div className="flex flex-col gap-6">
                 <div className="space-y-2">
-                    <h1 className="font-bold text-4xl">{listing.title}</h1>
-                    <p className="text-xl">{listing.profile.name}</p>
+                    <h1 className="font-bold text-3xl">{listing.title}</h1>
+                    <p className="text-lg">{listing.profile.name}</p>
                 </div>
                 <div>
                     <p className="text-sm whitespace-pre-wrap">{listing.description}</p>
                 </div>
-                <div className="space-y-4">
-                    <h1 className="font-semibold text-2xl">Details</h1>
+                <div className="space-y-3">
+                    <h1 className="font-semibold text-xl">Details</h1>
                     <div className="flex gap-4 items-center">
                         <MapPinIcon className="h-8" />
                         <p>{listing.details![0] || ''}</p>
@@ -56,9 +56,18 @@ export default async function Listing({
                     </ul>
                 </div>
             </div>
-            <div className="flex flex-col ">
-                
-                <div>Reviews gallery</div>
+            <div className="flex flex-col gap-12">
+            <div className="flex flex-col gap-2">
+                <div className="border-gray-200 border-2 flex justify-center items-center rounded-md h-[300px]">
+                    Image gallery - coming soon!
+                </div>
+            </div>
+            <div className="REVIEWS flex flex-col gap-2">
+                <h2 className="font-semibold text-xl">Reviews</h2>
+                <div className="border-gray-200 border-2 flex justify-center items-center rounded-md h-[100px]">
+                    Coming soon!
+                </div>
+            </div>
             </div>
         </div>
     )
