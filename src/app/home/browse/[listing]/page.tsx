@@ -25,7 +25,7 @@ export default async function Listing({
         return <div className="mx-auto">Page not found</div>
     }
     return (
-        <div className="my-16 grid grid-cols-2 gap-12">
+        <div className="my-16 flex flex-col md:grid grid-cols-2 gap-12">
             <div className="flex flex-col gap-6">
                 <div className="space-y-2">
                     <h1 className="font-bold text-3xl">{listing.title}</h1>

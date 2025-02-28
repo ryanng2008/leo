@@ -30,15 +30,22 @@ export default async function Navbar() {
     //     data-logo_alignment="left"></div></>)
     // }
     return (
-        <div className="bg-darkgray text-white grid grid-cols-3 h-[75px] px-16">
+        <div className="bg-darkgray text-white md:grid grid-cols-3 flex justify-around gap-4 h-[75px] md:px-16 px-4">
                 
-            <Link href='/home' className="icon text-3xl font-bold my-auto">Hi</Link>
-            <div className="grid grid-cols-2 my-auto"> 
+            <Link href='/home' className="icon text-2xl font-semibold my-auto">Kailash</Link>
+            <div className="grid grid-cols-2 gap-8 my-auto"> 
                 <div className="">
-                    <Link href='/home/browse' className="hover:underline"><p>Explore listings</p></Link>
+                    <Link href='/home/browse' className="hover:underline">
+                    <p className="inline md:hidden">Explore</p>
+                    <p className="md:inline hidden">Explore listings</p>
+                    
+                    </Link>
                 </div>
                 <div>
-                    <Link href='/home/create' className="hover:underline">Create a listing</Link>
+                    <Link href='/home/create' className="hover:underline">
+                    <p className="inline md:hidden">Create</p>
+                    <p className="md:inline hidden">Create a listing</p>
+                    </Link>
                 </div>
             </div>
             <div className="flex flex-row justify-end my-auto gap-4"> 

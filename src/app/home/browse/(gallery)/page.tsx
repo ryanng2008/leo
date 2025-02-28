@@ -23,7 +23,7 @@ export default async function Page() {
     
     return (
         <div className='grow'>
-        <div className="my-12 flex flex-col mx-8">
+        <div className="my-12 flex flex-col md:mx-8">
             <div className="ACTION BA.R mb-8">
                 <div className='flex justify-end mx-4 gap-4'>
                     {/* <div className={`flex items-end transition-all duration-300 overflow-hidden ${!showSearch && 'w-0'}`}>
@@ -35,7 +35,7 @@ export default async function Page() {
                 </div>
                 
             </div>
-            <div className="grid grid-cols-2 gap-8">
+            <div className="md:grid grid-cols-2 flex flex-col gap-8">
                 {dummyListings}
             </div>
         </div>
