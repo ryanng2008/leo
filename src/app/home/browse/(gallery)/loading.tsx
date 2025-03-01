@@ -1,4 +1,4 @@
 export default function Loading() {
     // put your skeleton here
-    return <div>Loading...</div>;
+    return <div className="my-auto mx-auto">Loading...</div>;
   }
