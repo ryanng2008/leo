@@ -162,7 +162,7 @@ function AboutBullets({ bullets, setBullets }: { bullets: string[], setBullets: 
                     className="border border-gray-500 rounded-md outline-none py-1 px-2 min-w-[400px]" 
                     value={bullet} 
                     onChange={e => handleChangeBullet(i, e.target.value)} 
-                    placeholder={i === 0 ? 'I\'m the greatest person on Earth' : ''}/>
+                    placeholder={i === 0 ? 'Add your contact details here' : 'Info about you'}/>
                 <MinusCircleIcon className="text-darkgray h-6" onClick={() => handleDeleteBullet(i)}/>
             </li>
         )
