@@ -32,7 +32,7 @@ export default async function Navbar() {
     return (
         <div className="bg-darkgray text-white md:grid grid-cols-3 flex justify-around gap-4 h-[75px] md:px-16 px-4">
                 
-            <Link href='/home' className="icon text-2xl font-semibold my-auto">Anduro</Link>
+            <Link href='/home' className="icon text-2xl font-semibold my-auto">Amburo</Link>
             <div className="grid grid-cols-2 gap-8 my-auto"> 
                 <div className="">
                     <Link href='/home/browse' className="hover:underline">
