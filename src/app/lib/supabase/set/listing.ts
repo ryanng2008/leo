@@ -3,7 +3,7 @@ import { supabase } from "@/app/lib/supabase/clients/client";
 import { fetchUserId } from "@/app/lib/supabase/auth/user";
 
 type ListingInsert = Database['public']['Tables']['listing']['Insert']
-type ListingUpdate = Database['public']['Tables']['listing']['Update']
+export type ListingUpdate = Database['public']['Tables']['listing']['Update']
 export type ListingInsertInput = Omit<ListingInsert, "providerid">
 
 export async function createListing(listing: ListingInsertInput) {
@@ -29,13 +29,25 @@ export async function createListing(listing: ListingInsertInput) {
     }
 }
 
-export async function updateListing(listingId: number, newListing: ListingUpdate) {
-    const { error } = await supabase
+export async function updateListing(listingId: string, newListing: ListingUpdate) {
+    const userId = await fetchUserId();
+    if (!userId) {
+        return { success: false, message: 'Sign in first!' };
+    }
+
+    const numericId = parseInt(listingId);
+    
+    const { data, error } = await supabase
         .from('listing')
         .update(newListing)
-        .eq('id', listingId)
-    if(error) {
-        console.error('Error updating listing: ', error)
+        .eq('id', numericId)
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error updating listing:', error);
+        return { success: false, message: 'Failed to update listing' };
     }
-    return true
+
+    return { success: true, message: 'Listing updated successfully', data };
 }

@@ -1,15 +1,19 @@
-
 import ListingItem from '@/app/home/browse/listingItem';
 import { getListingsWithProvider } from '@/app/lib/supabase/get/listing';
+import SearchBar from '@/app/home/browse/SearchBar';
 // import prisma from '@/app/lib/db';
 
-export default async function Page() {
-    // const listings = await prisma.listing.findMany();
-    // const listingItemsReal = listings.map((listing) => {
-    //     // get provider name from provider id
-    //     // render ListingItem
-    // })
-    const listings = await getListingsWithProvider();
+export default async function Page(props: {
+    searchParams?: Promise<{
+      query?: string;
+    }>;
+  }) {
+    const searchParams = await props.searchParams;
+    const searchQuery = typeof searchParams?.query === 'string' ? searchParams.query : '';
+    const listings = await getListingsWithProvider(searchQuery);
+
+    
+
     const dummyListings = listings.map((l) => {
         return <ListingItem 
             key={l.id}
@@ -24,16 +28,10 @@ export default async function Page() {
     return (
         <div className='grow'>
         <div className="my-12 flex flex-col md:mx-8">
-            <div className="ACTION BA.R mb-8">
+            <div className="ACTION BAR mb-8">
                 <div className='flex justify-end mx-4 gap-4'>
-                    {/* <div className={`flex items-end transition-all duration-300 overflow-hidden ${!showSearch && 'w-0'}`}>
-                    <input type="text" className='bg-transparent outline-0 border-b-2 p-0 text-lg border-darkgray' />
-                    </div>
-                    <button onClick={() => setShowSearch(!showSearch)}>
-                        <MagnifyingGlassIcon className='h-10' />
-                    </button> */}
+                    <SearchBar />
                 </div>
-                
             </div>
             <div className="md:grid grid-cols-2 flex flex-col gap-8">
                 {dummyListings}
@@ -42,7 +40,6 @@ export default async function Page() {
         </div>
     )
 }
-
 // function ListingItem({ title, creator, location, rating, image='', tags}: { title: string, creator: string, location: string, rating: number | string, image: string, tags: string[] }) {
 //     return (
 //         <div className="bg-lightgray rounded-2xl drop-shadow-xl grid grid-cols-4 px-8 py-6">

@@ -10,6 +10,7 @@ import { Database } from '../lib/types/database.types';
 export default function AccountMenu() {
     const { user } = useUser();
     const [profile, setProfile] = useState<Database['public']['Tables']['profile']['Row'] | null>(null)
+
     useEffect(() => {
         fetchPrivateProfile(user?.id || '')
         .then(data => setProfile(data))
@@ -17,19 +18,19 @@ export default function AccountMenu() {
 
     return (
         <div>
-            {
-                (user) 
-                ? 
+            {user ? (
                 <UserWidget 
                     name={profile?.name || ''} 
                     avatar={profile?.pfp_url || ''} 
-                    email={user.user_metadata.email} />
-                :
+                    email={user.user_metadata.email} 
+                />
+            ) : (
                 <GoogleSignIn />
-            }
+            )}
             <Script 
                 src="https://accounts.google.com/gsi/client" 
-                strategy="lazyOnload" />
+                strategy="lazyOnload" 
+            />
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import { getListing } from "@/app/lib/supabase/get/listing";
 import { CurrencyDollarIcon, MapPinIcon } from "@heroicons/react/24/solid";
-import { ClockIcon } from "@heroicons/react/24/outline";
+import { ClockIcon, PencilIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 
 // import { useState } from "react";
@@ -28,7 +29,12 @@ export default async function Listing({
         <div className=" flex flex-col md:grid grid-cols-2 gap-12 my-[80px]">
             <div className="flex flex-col gap-6">
                 <div className="space-y-2">
+                    <div className="flex flex-row justify-between items-center">
                     <h1 className="font-bold text-4xl">{listing.title}</h1>
+                    <Link href={`/home/edit/${listing.id}`}>
+                        <PencilIcon className="h-6" />
+                    </Link>
+                    </div>
                     <p className="text-lg">{listing.profile.name}</p>
                 </div>
                 <div>
