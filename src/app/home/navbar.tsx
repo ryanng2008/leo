@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AccountMenu from "@/app/ui/accountMenu";
+import Image from "next/image";
 // import { createClient } from '@/app/lib/supabase/server';
 
 export default async function Navbar() {
@@ -30,9 +31,12 @@ export default async function Navbar() {
     //     data-logo_alignment="left"></div></>)
     // }
     return (
-        <div className="bg-darkgray text-white md:grid grid-cols-3 flex justify-around gap-4 h-[75px] md:px-16 px-4">
+        <div className="bg-darkgray text-white md:grid grid-cols-3 flex justify-around gap-4 py-4 md:px-16 px-4">
                 
-            <Link href='/home' className="icon text-2xl font-semibold my-auto">Amburo</Link>
+            <Link href='/home' className="icon text-2xl font-semibold my-auto flex gap-4 items-center">
+            <Image src="/logo.svg" alt="logo" width={40} height={40} />
+            <p className="md:block hidden">Amburo</p>
+            </Link>
             <div className="grid grid-cols-2 gap-8 my-auto"> 
                 <div className="">
                     <Link href='/home/browse' className="hover:underline">

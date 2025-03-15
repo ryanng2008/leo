@@ -11,7 +11,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Amburo",
-  description: "Promote your tutoring & coaching for free, in under 2 minutes. The centralised platform for tutoring & coaching — find a tutor or connect with clients.",
+  description: "Promote your tutoring & coaching for free, with just 2 minutes. The centralised platform for tutoring & coaching — find a tutor or connect with clients.",
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 export default function RootLayout({
