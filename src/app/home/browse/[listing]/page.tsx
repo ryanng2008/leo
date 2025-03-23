@@ -11,7 +11,7 @@ export default async function Listing({
   }: {
     params: Promise<{ listing: string }>
   }) {
-    const listingId = (await params).listing[0];
+    const listingId = (await params).listing;
     const listing = await getListing(listingId);
     // console.log((await params).listing[0])
     // const listingId = (await params).listing[0];
