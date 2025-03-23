@@ -110,11 +110,13 @@ export default function Page() {
     }
   }
   return (
-    <div className="mx-8 md:grid grid-cols-2 flex flex-col my-12 gap-12">
+    <div className="flex flex-col mx-8 gap-12 my-12">
+    <h1 className="text-6xl font-semibold">Account</h1>
+
+    <div className="md:grid grid-cols-2 flex flex-col gap-12">
       { success ? <div className="my-auto mx-auto">{message}</div> :
       <>
         <div className="flex flex-col gap-8">
-          <h1 className="text-6xl font-semibold">Account</h1>
           <div className="flex flex-col gap-3">
             <h2 className="text-xl font-medium">Name</h2>
             <input type="text" 
@@ -140,6 +142,7 @@ export default function Page() {
           {user && <MyListings userId={user.id} />}
         </div>
       </>}
+    </div>
     </div>
   )
 }
