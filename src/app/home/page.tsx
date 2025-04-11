@@ -1,6 +1,6 @@
 "use client"
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
+import { ArrowRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react'
 import { useUser } from '@/app/context/authContext'
 import { Database } from '../lib/types/database.types'
@@ -27,7 +27,7 @@ export default function Page() {
     
     return (
     <div className="flex flex-col my-auto justify-center h-full gap-6">
-        <h1 className="font-semibold text-7xl">Welcome, {(user) ? profile?.name ||'user' : 'user'}!</h1>
+        <h1 className="font-semibold text-7xl">{(user) ? "Welcome, " + profile?.name || 'user' : 'Welcome'}!</h1>
         <form onSubmit={handleSearch} className="flex">
             <div className="bg-lightgray py-3 px-6 gap-16 flex flex-row items-center text-darkgray rounded-2xl">
                 <input 
@@ -45,6 +45,15 @@ export default function Page() {
                 </button>
             </div>
         </form>
+        <div>
+        <button 
+            onClick={() => router.push('/home/create')}
+            className="bg-darkgray flex flex-row gap-4 items-center text-white py-3 px-6 rounded-2xl font-medium transition-all duration-300 hover:scale-105"
+        >
+            <p>Create a listing</p>
+            <ArrowRightIcon className='h-4'/>
+        </button>
+        </div>
     </div>
     )
 }

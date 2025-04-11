@@ -1,5 +1,7 @@
+'use client'
 
-import { useState } from "react"
+import { useState, useRef } from 'react';
+import Image from 'next/image';
 import { 
     CurrencyDollarIcon, 
     MapPinIcon, 
@@ -16,12 +18,104 @@ export interface DetailsType {
 }
 
 export function AttachImages() {
+    const [images, setImages] = useState<File[]>([]);
+    const [previews, setPreviews] = useState<string[]>([]);
+    const [isDragging, setIsDragging] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleImageSelect = (files: File[]) => {
+        if (files.length + images.length > 5) {
+            alert('Maximum 5 images allowed');
+            return;
+        }
+
+        setImages(prev => [...prev, ...files]);
+        
+        // Create preview URLs
+        files.forEach(file => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviews(prev => [...prev, reader.result as string]);
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragging(false);
+        
+        const files = Array.from(e.dataTransfer.files).filter(file => 
+            file.type.startsWith('image/')
+        );
+        
+        if (files.length > 0) {
+            handleImageSelect(files);
+        }
+    };
+
+    const removeImage = (index: number) => {
+        setImages(prev => prev.filter((_, i) => i !== index));
+        setPreviews(prev => prev.filter((_, i) => i !== index));
+    };
+
     return (
         <div className="ATTACH IMAGES flex flex-col gap-2">
             <h2 className="font-semibold text-xl">Attach images</h2>
-            <div className="border-gray-200 border-2 flex justify-center items-center rounded-md h-[100px]">
-                Coming soon!
+            <div 
+                className={`border-2 flex justify-center items-center rounded-md h-[100px] transition-colors duration-200 ${
+                    isDragging 
+                        ? 'border-blue-500 bg-blue-50' 
+                        : 'border-gray-200'
+                }`}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                }}
+                onDragLeave={(e) => {
+                    e.preventDefault();
+                    setIsDragging(false);
+                }}
+                onDrop={handleDrop}
+            >
+                <div className="text-center">
+                    <button 
+                        onClick={() => fileInputRef.current?.click()}
+                        className="text-gray-500 hover:text-gray-700"
+                    >
+                        Click to upload images (max 5)
+                    </button>
+                    <p className="text-sm text-gray-400 mt-1">or drag and drop images here</p>
+                </div>
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={(e) => handleImageSelect(Array.from(e.target.files || []))}
+                    accept="image/*"
+                    multiple
+                    className="hidden"
+                />
             </div>
+            {previews.length > 0 && (
+                <div className="grid grid-cols-3 gap-2 mt-4">
+                    {previews.map((preview, index) => (
+                        <div key={index} className="relative aspect-square">
+                            <Image
+                                src={preview}
+                                alt={`Preview ${index + 1}`}
+                                fill
+                                className="object-cover rounded-md"
+                            />
+                            <button
+                                onClick={() => removeImage(index)}
+                                className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600"
+                            >
+                                ×
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
@@ -130,7 +224,7 @@ export function Details({ details, setDetails }: { details: DetailsType, setDeta
                     <MapPinIcon className="h-8 text-darkgray" />
                     <input type="text" 
                     className="text-sm bg-transparent border-b border-black outline-transparent placeholder:text-gray-600/70 grow" 
-                    placeholder="Hong Kong"
+                    placeholder="Sheung Wan/Online"
                     name='location'
                     value={details.location}
                     onChange={handleChangeNormal}

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { createListing } from "@/app/lib/supabase/set/listing";
 import { ListingInsertInput } from "@/app/lib/supabase/set/listing";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/app/context/authContext";
+import Script from 'next/script';
 
 import { Details, Tags, AboutBullets, AttachImages } from "@/app/home/create/components";
 
@@ -13,8 +15,36 @@ interface DetailsType {
     duration: string;
 }
 
+function GoogleSignIn() {
+    return (
+        <>
+            <div 
+                id="g_id_onload"
+                data-client_id="142861446606-8p5cj0nc5gunegct8332852598pkosri.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleSignInWithGoogle"
+                data-auto_prompt="false"
+                data-use_fedcm_for_prompt="true"
+                nonce="c_lBOKfLdog8dzYQQx-baQ">
+            </div>
+            <div 
+                className="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="outline"
+                data-text="signin_with"
+                data-size="large"
+                data-locale="en"
+                data-logo_alignment="left">
+            </div>
+        </>
+    )
+}
+
 export default function Page() {
     const router = useRouter();
+    const { user } = useUser();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [details, setDetails] = useState<DetailsType>({
@@ -26,6 +56,21 @@ export default function Page() {
     const [tags, setTags] = useState<string[]>([]);
     const [success, setSuccess] = useState<boolean | null>(null);
     const [message, setMessage] = useState('');
+
+    if (!user) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-2">
+                <h1 className="text-2xl font-semibold">Sign in to create a listing</h1>
+                <GoogleSignIn />
+                <Script 
+                    src="https://accounts.google.com/gsi/client" 
+                    strategy="lazyOnload" 
+                    nonce="c_lBOKfLdog8dzYQQx-baQ"
+                />
+            </div>
+        );
+    }
+
     async function handleCreate() {
         const listing: ListingInsertInput = {
             title: title,
@@ -58,7 +103,7 @@ export default function Page() {
                     <input 
                     type="text" 
                     className="border border-gray-400 rounded-lg py-[6px] px-3 text-md outline-gray-400 outline-2"
-                    placeholder="Freeloading lessons with Yannick"
+                    placeholder="Tennis lessons with Yannick"
                     value={title}
                     onChange={e => setTitle(e.target.value)}/>
                 </div>
