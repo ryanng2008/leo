@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Amburo",
   description: "Promote your tutoring & coaching for free, with just 2 minutes. The centralised platform for tutoring & coaching — find a tutor or connect with clients.",
   icons: {
-    icon: '/logo.svg',
+    icon: '/logo2.png',
   },
 };
 
